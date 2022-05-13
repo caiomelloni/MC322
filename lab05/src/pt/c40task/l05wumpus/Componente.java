@@ -1,9 +1,10 @@
 package pt.c40task.l05wumpus;
 
-public class Componente {
+public abstract class Componente {
 // deve possuir as coordenadas da sala, e passa para a caverna o posicionar
 	private int x;
 	private int y;
+	protected Caverna caverna;
 
 	private char funcao;
 	
@@ -41,21 +42,20 @@ public class Componente {
 		return x;
 	}
 
+	public void setX(int newX) {
+		x = newX;
+	}
 
 	public int getY() {
 		return y;
 	}
+	
+	public void setY(int newY) {
+		y = newY;
+	}
 
 	
-	public void mover(int x, int y) {
-		int deslocamentoX = x - this.getX();
-		int deslocamentoY = y - this.getY();
-		
-		if (deslocamentoX > 1 || deslocamentoX < -1) return;
-		if (deslocamentoY > 1 || deslocamentoY < -1) return;
-		
-		this.x = x;
-		this.y = y;
-		
+	public void conectaCaverna(Caverna caverna) {
+		this.caverna = caverna;
 	}
 }

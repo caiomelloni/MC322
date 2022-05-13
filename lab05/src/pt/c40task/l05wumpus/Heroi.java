@@ -31,8 +31,16 @@ public class Heroi extends Componente {
 	}
 	
 	public void mover(int x, int y) {
-		super.mover(x, y);
 		atirar();
+		int deslocamentoX = x - this.getX();
+		int deslocamentoY = y - this.getY();
+		
+		if (deslocamentoX > 1 || deslocamentoX < -1) return;
+		if (deslocamentoY > 1 || deslocamentoY < -1) return;
+		
+		super.setX(x);
+		super.setY(y);
+		
 	}
 	
 	private void atirar() {
