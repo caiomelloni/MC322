@@ -14,6 +14,10 @@ public abstract class Componente {
 		this.y = y;
 	}
 	
+	public char getComponenteFuncao() {
+		return funcao;
+	}
+	
 	public boolean ehHeroi() {
 		return funcao == 'P';
 	}

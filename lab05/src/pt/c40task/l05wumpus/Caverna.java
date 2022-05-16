@@ -14,8 +14,14 @@ public class Caverna {
 	private void initSalas() {
 		for (int i = 0; i < 4; i++) {
 			for (int j = 0; j < 4; j++) {
-				// inicializa salas vazias
+				Componente comp = new Vazio(i + 1, j + 1);
+				salas[i][j] = new Sala(comp);
 			}
 		}
 	}
+	
+	public void setSala(int x, int y, Componente comp) {
+		salas[x - 1][y - 1] = new Sala(comp);
+	}
+	
 }
