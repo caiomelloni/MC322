@@ -1,22 +1,16 @@
 package pt.c40task.l05wumpus;
 
+import java.util.Random;
+
 public class Heroi extends Componente {
-	private int score = 0;
 	private boolean possuiFlecha = true;
 	private boolean flechaEquipada = false;
 	private String nome;
+	private Score score;
 	
 	public Heroi(int x, int y, String nome) {
-		super(x, y, 'H');
+		super(x, y, 'P');
 		this.nome = nome;
-	}
-	
-	public int getScore() {
-		return score;
-	}
-	
-	public void incScore(int add) {
-		score += add;
 	}
 	
 	public void equiparFlecha() {
@@ -25,28 +19,58 @@ public class Heroi extends Componente {
 			possuiFlecha = false;
 		}
 	}
+
 	
 	public String getNome() {
 		return nome;
 	}
 	
-	public void mover(int x, int y) {
-		atirar();
-		int deslocamentoX = x - this.getX();
-		int deslocamentoY = y - this.getY();
+	public void mover(int y, int x) {
+		// só atira se a flecha estiver equipada
 		
-		if (deslocamentoX > 1 || deslocamentoX < -1) return;
-		if (deslocamentoY > 1 || deslocamentoY < -1) return;
+		int oldX = super.getX();
+		int oldY = super.getY();
 		
 		super.setX(x);
 		super.setY(y);
+		super.caverna.moverHeroi(this, oldY, oldX, score);
+		super.caverna.imprimeCaverna();
+		score.seMoveu();
 		
 	}
 	
-	private void atirar() {
-		if(flechaEquipada) {
-			flechaEquipada = false;
+	void atirar() {
+		Random random = new Random();        
+		int ganhou = random.nextInt(2); // 1 ganhou e 0 perdeu
+
+		if(!flechaEquipada || ganhou == 0) 
+		{
+			score.perdeuBuracoOuWumpus();
+	    	perdeuJogo();
+			return;
 		}
+		flechaEquipada = false;
+		score.usouFlecha();
+			
+		caverna.matarWumpus(getY(), getX(), this);
+		score.matouWumpus();
+
+		
+	}
+	
+	public void pegaOuro() {
+		boolean pegou = super.caverna.pegaOuro(super.getY(), super.getX());
+		
+		if (pegou) score.pegouOuro();
+	}
+	
+	public void conectaScore(Score score) {
+		this.score = score;
+	}
+	
+	public void perdeuJogo() {
+		System.out.println("Fim de jogo");
+		caverna.resetarJogo(this);
 	}
 
 }

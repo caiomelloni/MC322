@@ -42,11 +42,16 @@ public abstract class Componente {
 		return funcao == 'b';
 	}
 	
+	public boolean ehVazio() {
+		return funcao == '#';
+	}
+	
 	public int getX() {
 		return x;
 	}
 
 	public void setX(int newX) {
+		if (newX > 4 || newX < 0) return;
 		x = newX;
 	}
 
@@ -55,11 +60,18 @@ public abstract class Componente {
 	}
 	
 	public void setY(int newY) {
+		if (newY > 4 || newY < 0) return;
 		y = newY;
 	}
 
 	
 	public void conectaCaverna(Caverna caverna) {
 		this.caverna = caverna;
+	}
+	
+	public void trocarDeLugar(Componente comp) {
+		comp.conectaCaverna(caverna);
+		comp.setY(this.getY());
+		comp.setX(this.getX());
 	}
 }

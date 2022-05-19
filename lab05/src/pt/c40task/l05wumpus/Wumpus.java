@@ -1,5 +1,22 @@
 package pt.c40task.l05wumpus;
 
-public class Wumpus {
-
+public class Wumpus extends Componente {
+	public Wumpus(int x, int y) {
+		super(x, y, 'W');
+	    
+	}
+	
+	private void espalharFedor(Caverna caverna) {
+		caverna.espalharFedor(super.getY(), super.getX());
+		return;
+	}
+	
+	public void enfrentarHeroi() {
+		return;
+	}
+	
+	public void conectaCaverna(Caverna caverna) {
+		super.conectaCaverna(caverna);
+		espalharFedor(caverna);
+	}
 }

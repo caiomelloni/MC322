@@ -1,36 +1,96 @@
 package pt.c40task.l05wumpus;
 
+import java.util.Scanner;
+
 public class Controle {
-	private int score;
-	private Componente componentes[][] = new Componente[4][4];
-	private boolean gameOver = false;
+	private Score score;
+	private Heroi heroi;
 	
 	public Controle() {
+		score = new Score(this);
+	}
+	
+	static boolean coordenadasValidas(int y, int x) {
+		if (x < 0 || x > 3 || y < 0 || y > 3) {
+			// fora do tabuleiro
+			return false;
+		}
+		return true;
+	}
+	
+	// x = 0 and y = 0 are the initial positions
+	public void moverHeroi(int y, int x) {
 		
-	}
-	
-	private void incScore(int add) {
-		score += add;
-	}
-	
-	public void moverHeroi(int x, int y) {
+		int oldX = heroi.getX();
+		int oldY = heroi.getY();
 		
-	}
-	
-	public boolean isGameOver() {
-		return gameOver;
-	}
-	
-	public void restartGame() {
+		int deltaX = Math.abs(x - oldX);
+		int deltaY = Math.abs(y - oldY);
 		
+		if (!coordenadasValidas(y, x)) return;
+		
+		if (deltaX != 0 && deltaY != 0) {
+			// Error message
+			System.out.println("Movimento proibido: diagonal");
+			return;
+		}
+		if (deltaX > 1 || deltaY > 1) {
+			// Error message
+			System.out.println("Movimento proibido: deslocamento muito grande");
+			return;	
+		}
+		
+		heroi.mover(y, x);
 	}
 	
-	public void resetGame() {
-		restartGame();
-		score = 0;
+	public void conectaHeroi(Heroi heroi) {
+		this.heroi = heroi;
+		heroi.conectaScore(score);
 	}
 	
-	private Componente getHeroi() {
-		return componentes[0][0];
+	public void ativaModoInterativo() {
+		
+		 /*	
+		  	w -> Herói movimenta para a sala acima;
+			s ->  Herói movimenta para a sala abaixo;
+			d ->  Herói movimenta para a sala a direita;
+			a ->  Herói movimenta para a sala a esquerda;
+			k -> Herói equipa a flecha;
+			c -> Herói captura o ouro;
+			q -> O usuário sai do jogo.
+		 */
+		
+		Scanner keyboard = new Scanner(System.in);
+		String command = keyboard.nextLine();
+		
+		while (command != "q") {
+			int x = heroi.getX();
+			int y = heroi.getY();
+			
+			switch(command) {
+			case "w":
+				moverHeroi(y - 1, x);
+				break;
+			case "s":
+				moverHeroi(y + 1, x);
+				break;
+			case "d":
+				moverHeroi(y, x + 1);
+				break;
+			case "a":
+				moverHeroi(y, x - 1);
+				break;
+			case "k":
+				heroi.equiparFlecha();
+				break;
+			case "c":
+				heroi.pegaOuro();
+				break;
+			}
+			
+			command = keyboard.nextLine();
+		}
+		System.out.println("Saindo do jogo ...");
+		keyboard.close();
 	}
 }
