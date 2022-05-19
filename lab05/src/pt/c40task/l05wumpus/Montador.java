@@ -17,7 +17,7 @@ public class Montador {
 			inserirComponente(comandos[i], controle);
 		}
 		caverna.imprimeCaverna();
-		System.out.println("Player: Sting\nScore: 0");
+		System.out.println("Player: " + controle.getPlayerName() + "\nScore: 0");
 		if (qtdBuraco < 2) System.out.println("número insuficiente de buracos");
 	}
 	

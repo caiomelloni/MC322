@@ -6,8 +6,8 @@ public class Controle {
 	private Score score;
 	private Heroi heroi;
 	
-	public Controle() {
-		score = new Score(this);
+	public Controle(String playerName) {
+		score = new Score(this, playerName);
 	}
 	
 	static boolean coordenadasValidas(int y, int x) {
@@ -109,5 +109,10 @@ public class Controle {
 			heroi.sairJogo();
 			break;
 		}
+	}
+
+	public String getPlayerName() {
+
+		return score.getPlayerName();
 	}
 }

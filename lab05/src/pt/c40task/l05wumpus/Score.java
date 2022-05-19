@@ -4,10 +4,12 @@ public class Score {
 	private int score = 0;
 	private boolean possuiOuro = false;
 	private Controle controle;
+	private String playerName;
 	private char status = 'x'; // 'w' para venceu; 'n' para perdeu; 'x' intermediárias
 	
-	public Score(Controle controle) {
+	public Score(Controle controle, String playerName) {
 		this.controle = controle;
+		this.playerName = playerName;
 	}
 	
 	public char getStatus() {
@@ -27,18 +29,18 @@ public class Score {
 		possuiOuro = false;
 		status = 'n';
 		score -= 1000;
-		System.out.println("Player: " + "Alcebiades" + "\nScore: " + score +"\nVoce perdeu =(...");
+		System.out.println("Player: " + playerName + "\nScore: " + score +"\nVoce perdeu =(...");
 	}
 	
 	public void saiuDaCaverna() {
 		if (!possuiOuro) return;
 		score += 1000;
 		status = 'w';
-		System.out.println("Player: " + "Alcebiades" + "\nScore: " + score +"\nVoce ganhou =D !!!");
+		System.out.println("Player: " + playerName + "\nScore: " + score +"\nVoce ganhou =D !!!");
 	}
 	
 	public void saiuDoJogo() {
-		System.out.println("Player: " + "Alcebiades" + "\nScore: " + score +"\nVolte sempre !");
+		System.out.println("Player: " + playerName + "\nScore: " + score +"\nVolte sempre !");
 		score = 0;
 		status = 'x';
 	}
@@ -63,9 +65,13 @@ public class Score {
 	}
 
 	public void placarAtual() {
-		System.out.println("Player: " + "Sting");
+		System.out.println("Player: " + playerName);
 		System.out.println("Score: " + score);
 		
+	}
+
+	public String getPlayerName() {
+		return playerName;
 	}
 
 }
