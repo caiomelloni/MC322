@@ -27,18 +27,18 @@ public class Score {
 		possuiOuro = false;
 		status = 'n';
 		score -= 1000;
-		System.out.println("Player: String" + "\nScore: " + score +"\nVoce perdeu =(...");
+		System.out.println("Player: " + "Alcebiades" + "\nScore: " + score +"\nVoce perdeu =(...");
 	}
 	
 	public void saiuDaCaverna() {
 		if (!possuiOuro) return;
 		score += 1000;
 		status = 'w';
-		System.out.println("Player: String" + "\nScore: " + score +"\nVoce ganhou =D !!!");
+		System.out.println("Player: " + "Alcebiades" + "\nScore: " + score +"\nVoce ganhou =D !!!");
 	}
 	
 	public void saiuDoJogo() {
-		System.out.println("Player: String" + "\nScore: " + score +"\nVolte sempre !");
+		System.out.println("Player: " + "Alcebiades" + "\nScore: " + score +"\nVolte sempre !");
 		score = 0;
 		status = 'x';
 	}

@@ -21,15 +21,8 @@ public class AppWumpus {
          comandos[l] = cave[l][0] + ", " + cave[l][1] + ", " + cave[l][2];
       }
       
-      //Teste ----
-	  arquivoMovimentos= "ssdxaww";
-	  //---------
-      
       if (arquivoMovimentos != null) {
     	  String movements = tk.retrieveMovements();//string contínua de ordens
-    	  //Teste ----
-    	  movements= "ssdcaww";
-    	  //---------
     	  modoLeitura(comandos, movements, tk);
       } else {
     	  modoInterativo(comandos, tk);
