@@ -6,6 +6,10 @@ public class Wumpus extends Componente {
 	    
 	}
 	
+	static char getFuncao() {
+		return 'W';
+	}
+	
 	private void espalharFedor(Caverna caverna) {
 		caverna.espalharFedor(super.getY(), super.getX());
 		return;

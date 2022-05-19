@@ -1,7 +1,7 @@
 package pt.c40task.l05wumpus;
 
 public class AppWumpus {
-  /*
+ /*
    public static void main(String[] args) {
       AppWumpus.executaJogo(
             (args.length > 0) ? args[0] : null,
@@ -49,8 +49,9 @@ public class AppWumpus {
       
       tk.stop();
    }
-   */
+  
 	
+	*/
 	public static void main(String[] args) {
 		String comandos[] = {
 				"1,1,P",
@@ -69,4 +70,5 @@ public class AppWumpus {
 		montador.inserirComandos(comandos, controle);
 		controle.ativaModoInterativo();
 	}
+	
 }

@@ -2,6 +2,8 @@ package pt.c40task.l05wumpus;
 
 public class Caverna {
 	private Sala salas[][] = new Sala[4][4];
+	private int xOuro = 0;
+	private int yOuro = 0;
 	
 	public Caverna() {
 		initSalas();
@@ -39,10 +41,19 @@ public class Caverna {
 	
 	// true se pegou, false caso contrário
 	public boolean pegaOuro(int y, int x) {
-		return salas[y][x].saquearSala();
+		boolean pegou = salas[y][x].saquearSala();
+		
+		if (pegou) {
+			xOuro = x;
+			yOuro = y;
+		}
+		
+		return pegou;
 	}
 	
 	public void espalharFedor(int y, int x) {
+		if(!salas[y][x].possuiWumpus()) return;
+		System.out.println("espalhou");
 		for (int coluna = x - 1; coluna <= x + 1; coluna++) {
 			if(!Controle.coordenadasValidas(y, coluna)) continue;
 			salas[y][coluna].colocarFedor();
@@ -55,6 +66,8 @@ public class Caverna {
 	}
 	
 	public void espalharBrisa(int y, int x) {
+		if(!salas[y][x].possuiBuraco()) return;
+		
 		for (int coluna = x - 1; coluna <= x + 1; coluna++) {
 			if(!Controle.coordenadasValidas(y, coluna)) continue;
 			salas[y][coluna].colocarBrisa();
@@ -72,6 +85,10 @@ public class Caverna {
 	}
 
 	public void resetarJogo(Heroi heroi) {
+		if (yOuro != 0 && xOuro != 0) {			
+			salas[yOuro][xOuro] = new Sala(new Ouro(xOuro, yOuro));
+		}
+		
 		salas[heroi.getY()][heroi.getX()].retirarHeroi();
 		heroi.setX(0);
 		heroi.setY(0);

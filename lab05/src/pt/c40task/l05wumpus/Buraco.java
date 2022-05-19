@@ -5,6 +5,10 @@ public class Buraco extends Componente {
 		super(x, y, 'B');
 	}
 	
+	static char getFuncao() {
+		return 'B';
+	}
+	
 	public void conectaCaverna(Caverna caverna) {
 		super.conectaCaverna(caverna);
 		caverna.espalharBrisa(super.getY(), super.getX());

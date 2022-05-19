@@ -18,6 +18,7 @@ public class Score {
 	}
 	
 	public void perdeuBuracoOuWumpus() {
+		possuiOuro = false;
 		score -= 1000;
 		System.out.println("Player: String" + "\nScore: " + score +"\nVoce perdeu =(...");
 	}
@@ -26,6 +27,11 @@ public class Score {
 		if (!possuiOuro) return;
 		score += 1000;
 		System.out.println("Player: String" + "\nScore: " + score +"\nVoce ganhou =D !!!");
+	}
+	
+	public void saiuDoJogo() {
+		System.out.println("Player: String" + "\nScore: " + score +"\nVolte sempre !");
+		score = 0;
 	}
 	
 	public void seMoveu() {

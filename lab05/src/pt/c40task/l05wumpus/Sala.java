@@ -65,6 +65,14 @@ public class Sala {
 		return '-';		
 	}
 	
+	public boolean possuiWumpus() {
+		return componente.ehWumpus();
+	}
+	
+	public boolean possuiBuraco() {
+		return componente.ehBuraco();
+	}
+	
 	//não é usado na primeira inserção
 	public void inserirHeroi(Heroi heroi, Score score) {
 		this.heroi = heroi;

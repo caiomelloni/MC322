@@ -12,6 +12,8 @@ public class Montador {
 		for (int i = 0; i < comandos.length; i++) {
 			inserirComponente(comandos[i], controle);
 		}
+		caverna.imprimeCaverna();
+		System.out.println("Player: Sting\nScore: 0");
 	}
 	
 	// formato do comando: x,y,funcao - exemplo: 1,1,P

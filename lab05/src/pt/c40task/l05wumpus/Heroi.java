@@ -32,7 +32,8 @@ public class Heroi extends Componente {
 		super.setX(x);
 		super.setY(y);
 		super.caverna.moverHeroi(this, oldY, oldX, score);
-		score.seMoveu();
+		
+		if(!(x == 0 && y == 0 && score.possuiOuro())) score.seMoveu(); 
 		super.caverna.imprimeCaverna();
 		score.placarAtual();
 		System.out.println("=====");
@@ -61,7 +62,22 @@ public class Heroi extends Componente {
 	public void pegaOuro() {
 		boolean pegou = super.caverna.pegaOuro(super.getY(), super.getX());
 		
-		if (pegou) score.pegouOuro();
+		if (pegou) {
+			score.pegouOuro();
+			
+			for (int coluna = super.getX() - 1; coluna <= super.getX() + 1; coluna++) {
+				if(!Controle.coordenadasValidas(super.getY(), coluna)) continue;
+				super.caverna.espalharFedor(super.getY(), coluna);
+			}
+			
+			for (int linha = super.getY() - 1; linha <= super.getY() + 1; linha++) {
+				if(!Controle.coordenadasValidas(linha, super.getX())) continue;
+				super.caverna.espalharFedor(linha, super.getX());
+			}
+			
+			
+		}
+		super.caverna.imprimeCaverna();
 	}
 	
 	public void conectaScore(Score score) {
@@ -82,6 +98,13 @@ public class Heroi extends Componente {
 			caverna.resetarJogo(this);
 		}
 		
+	}
+
+	public void sairJogo() {
+		caverna.imprimeCaverna();
+		score.saiuDoJogo();
+		System.out.println("=====");
+		caverna.resetarJogo(this);
 	}
 
 }

@@ -61,36 +61,44 @@ public class Controle {
 		 */
 		
 		Scanner keyboard = new Scanner(System.in);
-		String command = keyboard.nextLine();
+		String command = "inicio";
 		
 		while (command != "q") {
-			int x = heroi.getX();
-			int y = heroi.getY();
-			
-			switch(command) {
-			case "w":
-				moverHeroi(y - 1, x);
-				break;
-			case "s":
-				moverHeroi(y + 1, x);
-				break;
-			case "d":
-				moverHeroi(y, x + 1);
-				break;
-			case "a":
-				moverHeroi(y, x - 1);
-				break;
-			case "k":
-				heroi.equiparFlecha();
-				break;
-			case "c":
-				heroi.pegaOuro();
-				break;
-			}
-			
+
+			fazerMovimento(command);
 			command = keyboard.nextLine();
+			
 		}
-		System.out.println("Saindo do jogo ...");
+		
 		keyboard.close();
+	}
+	
+	private void fazerMovimento(String mov) {
+		int x = heroi.getX();
+		int y = heroi.getY();
+		
+		switch(mov) {
+		case "w":
+			moverHeroi(y - 1, x);
+			break;
+		case "s":
+			moverHeroi(y + 1, x);
+			break;
+		case "d":
+			moverHeroi(y, x + 1);
+			break;
+		case "a":
+			moverHeroi(y, x - 1);
+			break;
+		case "k":
+			heroi.equiparFlecha();
+			break;
+		case "c":
+			heroi.pegaOuro();
+			break;
+		case "q":
+			heroi.sairJogo();
+			break;
+		}
 	}
 }
