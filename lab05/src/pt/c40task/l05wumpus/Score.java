@@ -9,16 +9,23 @@ public class Score {
 		this.controle = controle;
 	}
 	
+	public boolean possuiOuro() {
+		return possuiOuro;
+	}
+	
 	public void pegouOuro() {
 		possuiOuro = true;
 	}
 	
 	public void perdeuBuracoOuWumpus() {
 		score -= 1000;
+		System.out.println("Player: String" + "\nScore: " + score +"\nVoce perdeu =(...");
 	}
 	
 	public void saiuDaCaverna() {
-		if (possuiOuro) score += 1000;
+		if (!possuiOuro) return;
+		score += 1000;
+		System.out.println("Player: String" + "\nScore: " + score +"\nVoce ganhou =D !!!");
 	}
 	
 	public void seMoveu() {
@@ -30,11 +37,17 @@ public class Score {
 	}
 	
 	public void matouWumpus() {
-		score -= 500;
+		score += 500;
 	}
 	
 	public int getScore() {
 		return score;
+	}
+
+	public void placarAtual() {
+		System.out.println("Player: " + "Sting");
+		System.out.println("Score: " + score);
+		
 	}
 
 }

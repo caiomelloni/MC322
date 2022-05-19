@@ -35,7 +35,6 @@ public class Caverna {
 			}
 			System.out.println();
 		}
-		System.out.println("............");
 	}
 	
 	// true se pegou, false caso contrário

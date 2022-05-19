@@ -11,10 +11,6 @@ public class Wumpus extends Componente {
 		return;
 	}
 	
-	public void enfrentarHeroi() {
-		return;
-	}
-	
 	public void conectaCaverna(Caverna caverna) {
 		super.conectaCaverna(caverna);
 		espalharFedor(caverna);

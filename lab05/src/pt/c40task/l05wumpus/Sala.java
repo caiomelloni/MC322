@@ -65,6 +65,7 @@ public class Sala {
 		return '-';		
 	}
 	
+	//não é usado na primeira inserção
 	public void inserirHeroi(Heroi heroi, Score score) {
 		this.heroi = heroi;
 		mostraComponente = true;
@@ -74,6 +75,10 @@ public class Sala {
 			heroi.perdeuJogo();
 		} else if(componente.ehWumpus()) {
 			heroi.atirar();
+		}
+		
+		if(heroi.getX() == 0 && heroi.getY() == 0) {
+			heroi.sairCaverna();
 		}
 	}
 	

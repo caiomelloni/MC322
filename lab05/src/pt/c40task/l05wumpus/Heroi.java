@@ -1,5 +1,4 @@
 package pt.c40task.l05wumpus;
-
 import java.util.Random;
 
 public class Heroi extends Componente {
@@ -20,11 +19,10 @@ public class Heroi extends Componente {
 		}
 	}
 
-	
 	public String getNome() {
 		return nome;
 	}
-	
+
 	public void mover(int y, int x) {
 		// só atira se a flecha estiver equipada
 		
@@ -34,8 +32,10 @@ public class Heroi extends Componente {
 		super.setX(x);
 		super.setY(y);
 		super.caverna.moverHeroi(this, oldY, oldX, score);
-		super.caverna.imprimeCaverna();
 		score.seMoveu();
+		super.caverna.imprimeCaverna();
+		score.placarAtual();
+		System.out.println("=====");
 		
 	}
 	
@@ -69,8 +69,19 @@ public class Heroi extends Componente {
 	}
 	
 	public void perdeuJogo() {
-		System.out.println("Fim de jogo");
+		caverna.imprimeCaverna();
+		System.out.println("=====");
 		caverna.resetarJogo(this);
+	}
+
+	public void sairCaverna() {
+		if(score.possuiOuro()) {
+			caverna.imprimeCaverna();
+			score.saiuDaCaverna();
+			System.out.println("=====");
+			caverna.resetarJogo(this);
+		}
+		
 	}
 
 }
