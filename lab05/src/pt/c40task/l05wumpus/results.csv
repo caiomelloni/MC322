@@ -1,13 +1,48 @@
-##b-
-#b--
-b---
-p---
-score: -120
+#---
+P---
+----
+----
+score: -15
 status: x
 =====
-##b-
-#b#f
-b--w
 #---
-score: -1210
-status: n
+f---
+P---
+----
+score: -30
+status: x
+=====
+#---
+f---
+bO--
+----
+score: -45
+status: x
+=====
+#---
+f---
+bP--
+----
+score: -45
+status: x
+=====
+#---
+f---
+Pf--
+----
+score: -60
+status: x
+=====
+#---
+P---
+bf--
+----
+score: -75
+status: x
+=====
+P---
+----
+----
+----
+score: 925
+status: w

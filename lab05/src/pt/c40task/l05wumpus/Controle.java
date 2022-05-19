@@ -48,7 +48,7 @@ public class Controle {
 		heroi.conectaScore(score);
 	}
 	
-	public void ativaModoInterativo() {
+	public void ativaModoInterativo(Toolkit tk) {
 		
 		 /*	
 		  	w -> Herói movimenta para a sala acima;
@@ -63,14 +63,23 @@ public class Controle {
 		Scanner keyboard = new Scanner(System.in);
 		String command = "inicio";
 		
-		while (command != "q") {
+		while (!command.contains("q")) {
 
-			fazerMovimento(command);
+			tk.writeBoard(heroi.caverna.pegaMatrizCaverna(), score.getScore(), score.getStatus());
 			command = keyboard.nextLine();
-			
+			fazerMovimento(command);
 		}
 		
 		keyboard.close();
+	}
+	
+	public void ativaModoLeitura(String comandos, Toolkit tk) {
+		for (int i = 0; i < comandos.length(); i++) {
+			String command = String.valueOf(comandos.charAt(i));
+			fazerMovimento(command);
+		    tk.writeBoard(heroi.caverna.pegaMatrizCaverna(), score.getScore(), score.getStatus());
+		}
+		
 	}
 	
 	private void fazerMovimento(String mov) {

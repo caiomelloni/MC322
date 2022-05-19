@@ -1,7 +1,7 @@
 package pt.c40task.l05wumpus;
 
 public class AppWumpus {
- /*
+ 
    public static void main(String[] args) {
       AppWumpus.executaJogo(
             (args.length > 0) ? args[0] : null,
@@ -14,61 +14,46 @@ public class AppWumpus {
       Toolkit tk = Toolkit.start(arquivoCaverna, arquivoSaida, arquivoMovimentos);
       
       String cave[][] = tk.retrieveCave();
-      System.out.println("=== Caverna");
+      
+      String[] comandos = new String[cave.length];
+      
       for (int l = 0; l < cave.length; l++) {
-         for (int c = 0; c < cave[l].length; c++)
-            System.out.print(cave[l][c] + ((c < cave[l].length-1) ? ", " : ""));
-         System.out.println();
+         comandos[l] = cave[l][0] + ", " + cave[l][1] + ", " + cave[l][2];
       }
       
-      String movements = tk.retrieveMovements();
-      System.out.println("=== Movimentos");
-      System.out.println(movements);
+      //Teste ----
+	  arquivoMovimentos= "ssdxaww";
+	  //---------
       
-      System.out.println("=== Caverna Intermediaria");
-      char partialCave[][] = {
-         {'#', '#', 'b', '-'},
-         {'#', 'b', '-', '-'},
-         {'b', '-', '-', '-'},
-         {'p', '-', '-', '-'}
-      };
-      int score = -120;
-      char status = 'x'; // 'w' para venceu; 'n' para perdeu; 'x' intermediárias
-      tk.writeBoard(partialCave, score, status);
-
-      System.out.println("=== Última Caverna");
-      char finalCave[][] = {
-         {'#', '#', 'b', '-'},
-         {'#', 'b', '#', 'f'},
-         {'b', '-', '-', 'w'},
-         {'#', '-', '-', '-'}
-      };
-      score = -1210;
-      status = 'n'; // 'w' para venceu; 'n' para perdeu; 'x' intermediárias
-      tk.writeBoard(finalCave, score, status);
+      if (arquivoMovimentos != null) {
+    	  String movements = tk.retrieveMovements();//string contínua de ordens
+    	  //Teste ----
+    	  movements= "ssdcaww";
+    	  //---------
+    	  modoLeitura(comandos, movements, tk);
+      } else {
+    	  modoInterativo(comandos, tk);
+      }
       
       tk.stop();
    }
   
-	
-	*/
-	public static void main(String[] args) {
-		String comandos[] = {
-				"1,1,P",
-				"1,2,_",
-				"1,3,_",
-				"1,4,B",
-				"2,1,B",
-				"2,2,W",
-				"2,3,O"
-		};
-		
+   private static void modoInterativo(String[] comandos, Toolkit tk) {
 		Montador montador = new Montador();
 		Controle controle = new Controle();
 		Caverna caverna = new Caverna();
 		montador.initCaverna(caverna);
 		montador.inserirComandos(comandos, controle);
-		controle.ativaModoInterativo();
-	}
-	
+		controle.ativaModoInterativo(tk);
+   }
+   
+   private static void modoLeitura(String[] comandos, String movements, Toolkit tk) {
+		Montador montador = new Montador();
+		Controle controle = new Controle();
+		Caverna caverna = new Caverna();
+		montador.initCaverna(caverna);
+		montador.inserirComandos(comandos, controle);
+		controle.ativaModoLeitura(movements, tk);
+   }
+
 }

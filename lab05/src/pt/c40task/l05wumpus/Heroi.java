@@ -17,6 +17,7 @@ public class Heroi extends Componente {
 			flechaEquipada = true;
 			possuiFlecha = false;
 		}
+		super.caverna.imprimeCaverna();
 	}
 
 	public String getNome() {

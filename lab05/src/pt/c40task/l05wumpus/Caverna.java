@@ -39,6 +39,17 @@ public class Caverna {
 		}
 	}
 	
+	public char[][] pegaMatrizCaverna() {
+		char[][] matriz = new char[4][4];
+		for (int linha = 0; linha < 4; linha++) {
+			for (int coluna = 0; coluna < 4; coluna++) {
+				matriz[linha][coluna] = salas[linha][coluna].getComponenteFuncao();
+			}
+		}		
+		
+		return matriz;
+	}
+	
 	// true se pegou, false caso contrário
 	public boolean pegaOuro(int y, int x) {
 		boolean pegou = salas[y][x].saquearSala();
@@ -53,7 +64,6 @@ public class Caverna {
 	
 	public void espalharFedor(int y, int x) {
 		if(!salas[y][x].possuiWumpus()) return;
-		System.out.println("espalhou");
 		for (int coluna = x - 1; coluna <= x + 1; coluna++) {
 			if(!Controle.coordenadasValidas(y, coluna)) continue;
 			salas[y][coluna].colocarFedor();
